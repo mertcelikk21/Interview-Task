@@ -1,0 +1,39 @@
+<div class="page-header">
+  <div class="container">
+      <h1>Tüketim Hesabı</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="calculateForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Tutar</mat-label>
+            <input type="number" matInput [(ngModel)]="amount" formControlName="amount" name="amount">
+          </mat-form-field>
+        </div>
+        <div [hidden]="true">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>İlk Endeks</mat-label>
+            <input type="text" matInput [readonly]="true" [(ngModel)]="firstIndex" formControlName="firstIndex" name="firstIndex">
+          </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" [disabled]="calculateForm.invalid">Hesapla</button>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-md-6">
+        <div >
+
+        </div>
+    </div>
+  </div>
+
+</div>
+
+

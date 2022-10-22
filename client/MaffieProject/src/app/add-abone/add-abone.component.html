@@ -1,0 +1,111 @@
+<div class="page-header">
+  <div class="container">
+      <h1>Abone Ekleme Sayfası</h1>
+  </div>
+</div>
+
+<form class="example-form" [formGroup]="aboneForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-5 ">
+    <div class="row">
+      <div class="col-md-6">
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Abone Numarası</mat-label>
+              <input type="text" matInput formControlName="number" >
+              <mat-error *ngIf="aboneForm.get('number')?.errors?.['required']">
+                Lütfen abone numarasını giriniz
+              </mat-error>
+              <mat-error *ngIf="aboneForm.get('number')?.errors?.['minlength']">
+                Abone Numarası 8 Karakter Olmalıdır
+              </mat-error>
+              <mat-error *ngIf="aboneForm.get('number')?.errors?.['maxlength']">
+                Abone Numarası 8 Karakter Olmalıdır
+              </mat-error>
+
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Adı</mat-label>
+              <input type="text" matInput formControlName="name" >
+              <mat-error *ngIf="aboneForm.get('name')?.errors?.['required']">
+                Lütfen Adınızı Giriniz
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Soyadı</mat-label>
+              <input type="text" matInput formControlName="surname" >
+              <mat-error *ngIf="aboneForm.get('surname')?.errors?.['required']">
+                Lütfen Soyadınızı Giriniz
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label id="example-radio-group-label">Kdv Oranı Seçiniz</label>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"  formControlName="kdvId" [(ngModel)]="radioValue">
+              <mat-radio-button class="example-radio-button"
+              *ngFor="let item of kdvList index as i" [value]="item.id" color="primary">
+                {{item.kdvRatio}}
+              </mat-radio-button>
+
+              <mat-error *ngIf=" aboneForm.get('kdvId')?.dirty && aboneForm.get('kdvId')?.touched && aboneForm.get('kdvId')?.errors?.['required']">
+                Lütfen kdv oranı seçiniz
+              </mat-error>
+            </mat-radio-group>
+          </div>
+
+      </div>
+
+
+      <div class="col-md-6">
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Adres</mat-label>
+              <input type="text" matInput formControlName="address" [(ngModel)]="addressValue" >
+              <mat-error *ngIf="aboneForm.get('address')?.errors?.['required']">
+                Lütfen Adresinizi Giriniz
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label id="example-radio-group-label">Para Birimi Seçiniz</label>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"  formControlName="currencyUnitId" [(ngModel)]="currencyUnitValue">
+              <mat-radio-button class="example-radio-button"
+              *ngFor="let item of currencyUnitList index as i" [value]="item.id" color="primary">
+                {{item.money}}
+
+              </mat-radio-button>
+
+              <mat-error *ngIf="aboneForm.get('currencyUnitId')?.dirty && aboneForm.get('currencyUnitId')?.touched &&  aboneForm.get('currencyUnitId')?.errors?.['required']">
+                Lütfen Para birimi seçiniz
+              </mat-error>
+            </mat-radio-group>
+          </div>
+
+
+<hr>
+
+
+
+
+
+
+        <div>
+         <button  [disabled]="aboneForm.invalid"  mat-raised-button color="primary" type="submit">Abone Ekle</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>

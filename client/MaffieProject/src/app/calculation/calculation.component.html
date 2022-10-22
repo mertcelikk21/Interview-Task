@@ -1,0 +1,41 @@
+<div class="page-header">
+  <div class="container">
+      <h1>Tüketim Hesabı</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+
+      <form [formGroup]="calculateForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>İlk Endeks</mat-label>
+            <input type="text" matInput [readonly]="true" [(ngModel)]="firstIndex" formControlName="firstIndex" name="firstIndex">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Son Endeks</mat-label>
+            <input type="number" matInput  formControlName="LastIndex"   name="LastIndex" >
+          </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" [disabled]="calculateForm.invalid">Hesapla</button>
+        </div>
+      </form>
+    </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+

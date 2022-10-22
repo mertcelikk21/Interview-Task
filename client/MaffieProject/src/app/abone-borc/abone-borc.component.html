@@ -1,0 +1,86 @@
+<div class="page-header">
+  <div class="container d-flex">
+      <h1 class="justify-content-center">Abone Borç</h1>
+  </div>
+</div><hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div *ngFor="let item of aboneData">
+        <div>
+          <mat-label>Abone Açılış Tarihi:</mat-label>
+          <strong> {{item.openingDate |date }} </strong>
+        </div><hr>
+        <div>
+          <mat-label>Abone Sahibi:   </mat-label>
+          <strong> {{item.name}}  {{item.surname}}</strong>
+        </div><hr>
+        <div>
+          <mat-label>Abone Numaras:   </mat-label>
+          <strong> {{item.number}} </strong>
+        </div><hr>
+        <div>
+          <mat-label>Adres:   </mat-label>
+          <strong> {{item.address}} </strong>
+        </div><hr>
+        <div>
+          <mat-label>Mevcut Kdv Oranı:   </mat-label>
+          <strong> {{item.kdv}} </strong>
+        </div><hr>
+        <div>
+          <mat-label>Mevcut Para Birimi:   </mat-label>
+          <strong> {{item.currencyUnit}} </strong>
+        </div><hr>
+        <div *ngIf="item.currencyUnit !='TL'">
+          <mat-label>{{item.currencyUnit}} Anlık Kur:  </mat-label>
+          <strong> {{anlikKur}} </strong>
+        </div><hr>
+      </div>
+    </div>
+    <div class="col-md-8">
+          <h1>En Son Hesaplanan </h1>
+        <div *ngFor="let borc of aboneBorcData">
+            <div>
+                  <div>
+                    <mat-label>Hesaplanma Tarihi</mat-label>
+                    <strong> {{borc.calculationDate |date }} </strong>
+                  </div>
+
+                  <div>
+                    <mat-label>Tüketim Miktarı:</mat-label>
+                    <strong> {{borc.consumptionAmount}} m3 </strong>
+                  </div>
+                  <div>
+                    <mat-label>İlk Endeks:</mat-label>
+                    <strong> {{borc.firstIndex}}  </strong>
+                  </div>
+                  <div>
+                    <mat-label>Son Endeks:</mat-label>
+                    <strong> {{borc.lastIndex}}  </strong>
+                  </div>
+                  <div *ngFor="let item of aboneData">
+                    <mat-label>Tarife Toplam Fiyat:</mat-label>
+                    <strong> {{borc.recipeTotalPrice}} {{item.currencyUnit}} </strong>
+                  </div>
+                  <div *ngFor="let item of aboneData">
+                      <mat-label>Tarife Kdv'li Fiyat:</mat-label>
+                      <strong> {{borc.tariffKdvPrice}}  {{item.currencyUnit}} </strong>
+                  </div>
+                  <div>
+                    <mat-label>Birim Fiyat:</mat-label>
+                    <strong> {{borc.unitPrice}} TL  </strong>
+                  </div>
+                  <div>
+                    <mat-label>Hesaplanma Türü: </mat-label>
+                    <strong *ngIf="borc.calculationTypeId == 1">Tüketim Üzerinden Hesaplama</strong>
+                    <strong *ngIf="borc.calculationTypeId == 2">Ücret Üzerinden Hesaplama</strong>
+                  </div>
+                </div>
+                <hr>
+      </div>
+
+
+    </div>
+  </div>
+</div>
